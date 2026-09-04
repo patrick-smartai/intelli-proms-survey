@@ -1,8 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 const allowedOrigins = [
-  'https://YOUR-PRODUCTION-DOMAIN.vercel.app',
-  'https://YOUR-CUSTOM-DOMAIN.co.uk'
+  'https://intelli-proms-survey.vercel.app',
 ].filter(Boolean);
 
 const requiredFields = [
