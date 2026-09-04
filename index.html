@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="National survey: how arthroplasty surgeons use PROMs" />
+  <title>How Arthroplasty Surgeons Use PROMs | Intelli-PROMs</title>
+  <style>
+    :root { --navy:#062a64; --blue:#087bf0; --teal:#059bae; --ink:#132238; --muted:#5b6b80; --line:#dbe4ee; --bg:#f5f8fb; --card:#fff; --danger:#b42318; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+    .wrap { width:min(900px, calc(100% - 32px)); margin:auto; }
+    header { background:linear-gradient(135deg, #fff 0%, #f0fbfc 100%); border-bottom:1px solid var(--line); padding:30px 0 26px; }
+    .brand { display:flex; align-items:center; gap:16px; }
+    .mark { position:relative; width:62px; height:55px; border:5px solid var(--teal); border-right:0; border-radius:16px 0 0 16px; }
+    .mark:before, .mark:after { content:""; position:absolute; bottom:9px; width:10px; border-radius:7px 7px 0 0; background:var(--teal); }
+    .mark:before { height:23px; left:14px; box-shadow:15px -13px 0 var(--teal), 30px -28px 0 var(--blue); }
+    .mark:after { width:61px; height:9px; left:4px; bottom:0; transform:rotate(-40deg); background:var(--navy); }
+    .wordmark { font-size:25px; letter-spacing:-1px; font-weight:750; color:var(--navy); }
+    .wordmark span { color:var(--teal); }
+    h1 { margin:28px 0 8px; max-width:760px; font-size:clamp(28px, 5vw, 42px); line-height:1.12; letter-spacing:-1.2px; color:var(--navy); }
+    .intro { margin:0; max-width:720px; color:var(--muted); font-size:17px; }
+    main { padding:32px 0 56px; }
+    .notice { margin-bottom:24px; padding:16px 18px; background:#e9f8fb; color:#174d60; border-left:5px solid var(--teal); border-radius:8px; }
+    form { display:grid; gap:24px; }
+    fieldset { margin:0; padding:0; border:0; }
+    .section { background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(17, 43, 75, .04); }
+    .section-title { margin:0; padding:17px 22px; background:var(--navy); color:white; font-size:20px; }
+    .questions { padding:4px 22px 22px; }
+    .question { padding:22px 0; border-bottom:1px solid var(--line); }
+    .question:last-child { border-bottom:0; padding-bottom:0; }
+    legend { padding:0; font-weight:700; font-size:17px; }
+    .required { color:var(--danger); margin-left:3px; }
+    .hint { margin:5px 0 12px; color:var(--muted); font-size:14px; }
+    .options { display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:9px 14px; }
+    label.option { display:flex; gap:10px; align-items:flex-start; padding:9px 10px; border:1px solid transparent; border-radius:8px; cursor:pointer; }
+    label.option:hover { border-color:#b8dbea; background:#f4fbfc; }
+    input { margin-top:4px; accent-color:var(--teal); }
+    .privacy { padding:18px 20px; background:#fff; border:1px solid var(--line); border-radius:12px; color:var(--muted); font-size:14px; }
+    .privacy strong { color:var(--ink); }
+    .submit-row { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    button { appearance:none; cursor:pointer; border:0; border-radius:9px; padding:14px 22px; color:white; background:linear-gradient(90deg, var(--navy), var(--blue)); font-size:16px; font-weight:700; box-shadow:0 4px 10px rgba(6,42,100,.2); }
+    button:hover { filter:brightness(1.06); } button:disabled { cursor:wait; opacity:.7; }
+    #status { margin:0; color:var(--muted); font-size:14px; }
+    #status.error { color:var(--danger); } #status.success { color:#087443; font-weight:600; }
+    .hidden { display:none; }
+    .thank-you { padding:44px 24px; text-align:center; background:white; border:1px solid var(--line); border-radius:14px; }
+    .thank-you h2 { margin:0 0 10px; color:var(--navy); }
+    @media (max-width:560px) { .options { grid-template-columns:1fr; } .questions { padding-left:16px; padding-right:16px; } .section-title { padding-left:16px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand" aria-label="Intelli-PROMs">
+        <div class="mark" aria-hidden="true"></div><div class="wordmark">intelli-<span>PROMs</span></div>
+      </div>
+      <h1>How Arthroplasty Surgeons Use PROMs</h1>
+      <p class="intro">A national survey exploring current practice and future uses of patient-reported outcome measures (PROMs) in arthroplasty.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="notice">Please answer based on your current clinical practice. The survey is anonymous: do not enter patient-identifiable information.</div>
+    <div id="surveyArea">
+      <form id="promsSurvey" novalidate>
+        <section class="section"><h2 class="section-title">Section 1: Surgeon profile</h2><div class="questions">
+          <fieldset class="question" data-name="sub_speciality" data-required="true"><legend>Your sub-speciality<span class="required">*</span></legend><div class="options">
+            <label class="option"><input type="radio" value="Hip arthroplasty">Hip arthroplasty</label><label class="option"><input type="radio" value="Knee arthroplasty">Knee arthroplasty</label><label class="option"><input type="radio" value="Hip and knee equally">Hip and knee equally</label><label class="option"><input type="radio" value="Shoulder arthroplasty">Shoulder arthroplasty</label><label class="option"><input type="radio" value="Trauma">Trauma</label><label class="option"><input type="radio" value="Hand & Wrist">Hand &amp; Wrist</label><label class="option"><input type="radio" value="Foot & Ankle">Foot &amp; Ankle</label>
+          </div></fieldset>
+          <fieldset class="question" data-name="grade" data-required="true"><legend>Your grade<span class="required">*</span></legend><div class="options">
+            <label class="option"><input type="radio" value="Consultant">Consultant</label><label class="option"><input type="radio" value="SAS surgeon">SAS surgeon</label><label class="option"><input type="radio" value="Associate specialist">Associate specialist</label><label class="option"><input type="radio" value="Fellow">Fellow</label><label class="option"><input type="radio" value="Trainee">Trainee</label>
+          </div></fieldset>
+          <fieldset class="question" data-name="primary_setting" data-required="true"><legend>Primary setting<span class="required">*</span></legend><div class="options">
+            <label class="option"><input type="radio" value="DGH">DGH</label><label class="option"><input type="radio" value="NHS Teaching / Tertiary centre / Revision Hub">NHS Teaching / Tertiary centre / Revision Hub</label><label class="option"><input type="radio" value="NHS Specialist Orthopaedic Centre">NHS Specialist Orthopaedic Centre</label><label class="option"><input type="radio" value="Independent Sector">Independent Sector</label>
+          </div></fieldset>
+          <fieldset class="question" data-name="annual_arthroplasty_volume" data-required="true"><legend>Approximate annual arthroplasty volume<span class="required">*</span></legend><div class="options">
+            <label class="option"><input type="radio" value="<50">&lt;50</label><label class="option"><input type="radio" value="50–100">50–100</label><label class="option"><input type="radio" value="100–250">100–250</label><label class="option"><input type="radio" value="250–500">250–500</label><label class="option"><input type="radio" value="500+">500+</label>
+          </div></fieldset>
+        </div></section>
+        <section class="section"><h2 class="section-title">Section 2: Current PROM use</h2><div class="questions">
+          <fieldset class="question" data-name="department_annual_data_access" data-required="true"><legend>Do you have access to your department’s annual PROMs data?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Yes">Yes</label><label class="option"><input type="radio" value="No">No</label><label class="option"><input type="radio" value="Unsure">Unsure</label></div></fieldset>
+          <fieldset class="question" data-name="collection_timepoints" data-required="true" data-multiple="true"><legend>How long are PROMs collected for in your department?<span class="required">*</span></legend><p class="hint">Select all that apply.</p><div class="options"><label class="option"><input type="checkbox" value="Not routinely collected">Not routinely collected</label><label class="option"><input type="checkbox" value="Unsure">Unsure</label><label class="option"><input type="checkbox" value="Pre-op">Pre-op</label><label class="option"><input type="checkbox" value="6 weeks">6 weeks</label><label class="option"><input type="checkbox" value="6 months">6 months</label><label class="option"><input type="checkbox" value="12 months">12 months</label><label class="option"><input type="checkbox" value="Over 1 year">Over 1 year</label></div></fieldset>
+          <fieldset class="question" data-name="proms_usefulness" data-required="true"><legend>Do you find PROMs useful in your practice?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Never">Never</label><label class="option"><input type="radio" value="Rarely">Rarely</label><label class="option"><input type="radio" value="Sometimes">Sometimes</label><label class="option"><input type="radio" value="Often">Often</label><label class="option"><input type="radio" value="Very often">Very often</label></div></fieldset>
+          <fieldset class="question" data-name="department_completion_rate" data-required="true"><legend>What is the PROMs completion rate in your department?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="<25%">&lt;25%</label><label class="option"><input type="radio" value="25–50%">25–50%</label><label class="option"><input type="radio" value="50–75%">50–75%</label><label class="option"><input type="radio" value=">75%">&gt;75%</label><label class="option"><input type="radio" value="Unsure">Unsure</label></div></fieldset>
+          <fieldset class="question" data-name="collection_worthwhile" data-required="true"><legend>Do you think PROMs collection is worthwhile?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Yes">Yes</label><label class="option"><input type="radio" value="No">No</label><label class="option"><input type="radio" value="Unsure">Unsure</label></div></fieldset>
+          <fieldset class="question" data-name="low_preop_score_alters_management" data-required="true"><legend>How often does a low pre-operative PROM score alter patient management?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Never">Never</label><label class="option"><input type="radio" value="Rarely">Rarely</label><label class="option"><input type="radio" value="Sometimes">Sometimes</label><label class="option"><input type="radio" value="Often">Often</label><label class="option"><input type="radio" value="Very often">Very often</label></div></fieldset>
+          <fieldset class="question" data-name="routine_follow_up" data-required="true"><legend>How long do you follow up routine arthroplasty cases?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Never">Never</label><label class="option"><input type="radio" value="Attend one Allied Professional Clinic (e.g. SCP)">Attend one Allied Professional Clinic (e.g. SCP)</label><label class="option"><input type="radio" value="Once">Once</label><label class="option"><input type="radio" value="More than once">More than once</label></div></fieldset>
+          <fieldset class="question" data-name="recall_based_on_proms" data-required="true"><legend>Are your patients recalled for review based on PROMs scores?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Never">Never</label><label class="option"><input type="radio" value="Rarely">Rarely</label><label class="option"><input type="radio" value="Sometimes">Sometimes</label><label class="option"><input type="radio" value="Often">Often</label><label class="option"><input type="radio" value="Very often">Very often</label></div></fieldset>
+        </div></section>
+        <section class="section"><h2 class="section-title">Section 3: Future PROM use</h2><div class="questions">
+          <fieldset class="question" data-name="minimum_useful_completion_rate" data-required="true"><legend>What is the minimum completion rate that would make PROMs useful for your own practice?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Unsure">Unsure</label><label class="option"><input type="radio" value="<30%">&lt;30%</label><label class="option"><input type="radio" value="30–50%">30–50%</label><label class="option"><input type="radio" value="50–70%">50–70%</label><label class="option"><input type="radio" value="70–80%">70–80%</label><label class="option"><input type="radio" value="80–90%">80–90%</label><label class="option"><input type="radio" value="90%+">90%+</label></div></fieldset>
+          <fieldset class="question" data-name="increased_use_factors" data-required="true" data-multiple="true"><legend>What would most increase your use of PROMs?<span class="required">*</span></legend><p class="hint">Select all that apply.</p><div class="options"><label class="option"><input type="checkbox" value="Better access">Better access</label><label class="option"><input type="checkbox" value="Better completion rate">Better completion rate</label><label class="option"><input type="checkbox" value="Better integration into clinic systems">Better integration into clinic systems</label><label class="option"><input type="checkbox" value="Faster feedback reports">Faster feedback reports</label><label class="option"><input type="checkbox" value="Less administrative burden">Less administrative burden</label></div></fieldset>
+          <fieldset class="question" data-name="proms_use_context" data-required="true" data-multiple="true"><legend>If you had access, in what context would you use PROMs?<span class="required">*</span></legend><p class="hint">Select all that apply.</p><div class="options"><label class="option"><input type="checkbox" value="Pre-op counselling">Pre-op counselling</label><label class="option"><input type="checkbox" value="Pre-op triage">Pre-op triage</label><label class="option"><input type="checkbox" value="Post-op follow-up triage / discharge">Post-op follow-up triage / discharge</label><label class="option"><input type="checkbox" value="Audit / benchmarking">Audit / benchmarking</label><label class="option"><input type="checkbox" value="Reports">Reports</label><label class="option"><input type="checkbox" value="Research">Research</label><label class="option"><input type="checkbox" value="Implant surveillance">Implant surveillance</label></div></fieldset>
+          <fieldset class="question" data-name="concerning_patterns" data-required="true" data-multiple="true"><legend>Which patterns would most concern you?<span class="required">*</span></legend><p class="hint">Select all that apply.</p><div class="options"><label class="option"><input type="checkbox" value="No improvement after surgery">No improvement after surgery</label><label class="option"><input type="checkbox" value="Initial improvement followed by deterioration">Initial improvement followed by deterioration</label><label class="option"><input type="checkbox" value="Persistent low score from baseline">Persistent low score from baseline</label><label class="option"><input type="checkbox" value="PROMs alone would not concern me">PROMs alone would not concern me</label></div></fieldset>
+          <fieldset class="question" data-name="support_prom_based_discharge" data-required="true"><legend>Would you support PROM-based full discharge without follow-up for low-risk patients with good recovery?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Strongly support">Strongly support</label><label class="option"><input type="radio" value="Support">Support</label><label class="option"><input type="radio" value="Neutral">Neutral</label><label class="option"><input type="radio" value="Oppose">Oppose</label><label class="option"><input type="radio" value="Strongly oppose">Strongly oppose</label><label class="option"><input type="radio" value="Not applicable">Not applicable</label></div></fieldset>
+          <fieldset class="question" data-name="proms_trigger_review" data-required="true"><legend>Would you use PROMs to trigger a review after arthroplasty?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Yes, routinely">Yes, routinely</label><label class="option"><input type="radio" value="Yes, in selected patients">Yes, in selected patients</label><label class="option"><input type="radio" value="Possibly, with clinical correlation">Possibly, with clinical correlation</label><label class="option"><input type="radio" value="No">No</label><label class="option"><input type="radio" value="Unsure">Unsure</label></div></fieldset>
+          <fieldset class="question" data-name="waiting_list_prioritisation" data-required="true"><legend>Should PROM scores influence waiting-list prioritisation?<span class="required">*</span></legend><div class="options"><label class="option"><input type="radio" value="Yes">Yes</label><label class="option"><input type="radio" value="No">No</label><label class="option"><input type="radio" value="Unsure">Unsure</label></div></fieldset>
+        </div></section>
+        <div class="privacy"><strong>Data collection setup required:</strong> this page prepares each response as a structured JSON record. To collect real submissions, add a secure endpoint URL to <code>SUBMISSION_ENDPOINT</code> in the script below. Do not use browser-only storage for research data. Ensure your approved study documentation explains the data controller, lawful basis, retention, access controls and any ethics/governance requirements before launch.</div>
+        <div class="submit-row"><button type="submit" id="submitButton">Submit survey</button><p id="status" role="status" aria-live="polite"></p></div>
+      </form>
+    </div>
+    <section id="thanks" class="thank-you hidden"><h2>Thank you for completing the survey</h2><p>Your response has been recorded.</p></section>
+  </main>
+  <script>
+    // Replace this with your secure collection endpoint, e.g. a Vercel /api/survey route or a form provider webhook.
+    const SUBMISSION_ENDPOINT = "";
+    const form = document.getElementById('promsSurvey');
+    const status = document.getElementById('status');
+    const button = document.getElementById('submitButton');
+    form.querySelectorAll('fieldset[data-name]').forEach(group => {
+      const name = group.dataset.name;
+      group.querySelectorAll('input').forEach(input => input.name = name);
+    });
+    function collectResponses() {
+      const response = {};
+      form.querySelectorAll('fieldset[data-name]').forEach(group => {
+        const selected = [...group.querySelectorAll('input:checked')].map(i => i.value);
+        response[group.dataset.name] = group.dataset.multiple === 'true' ? selected : (selected[0] || '');
+      });
+      return { submitted_at: new Date().toISOString(), survey_version: 'v2', responses: response };
+    }
+    function validate() {
+      const missing = [...form.querySelectorAll('fieldset[data-required="true"]')].filter(g => !g.querySelector('input:checked'));
+      if (!missing.length) return true;
+      const first = missing[0];
+      status.textContent = `Please answer all required questions (${missing.length} remaining).`;
+      status.className = 'error';
+      first.scrollIntoView({behavior:'smooth', block:'center'});
+      return false;
+    }
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!validate()) return;
+      if (!SUBMISSION_ENDPOINT) {
+        status.textContent = 'Collection endpoint has not yet been configured. Set SUBMISSION_ENDPOINT before publishing.';
+        status.className = 'error';
+        return;
+      }
+      button.disabled = true;
+      status.textContent = 'Submitting your response…'; status.className = '';
+      try {
+        const result = await fetch(SUBMISSION_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(collectResponses()) });
+        if (!result.ok) throw new Error('Submission failed');
+        document.getElementById('surveyArea').classList.add('hidden');
+        document.getElementById('thanks').classList.remove('hidden');
+      } catch (error) {
+        status.textContent = 'Your response could not be submitted. Please try again later.';
+        status.className = 'error'; button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
