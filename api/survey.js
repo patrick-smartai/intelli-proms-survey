@@ -5,25 +5,22 @@ const allowedOrigins = [
 ].filter(Boolean);
 
 const requiredFields = [
-  'sub_speciality',
+  'subspeciality',
   'grade',
-  'primary_setting',
-  'annual_arthroplasty_volume',
-  'department_annual_data_access',
-  'collection_timepoints',
-  'proms_usefulness',
-  'department_completion_rate',
-  'collection_worthwhile',
-  'low_preop_score_alters_management',
-  'routine_follow_up',
-  'recall_based_on_proms',
-  'minimum_useful_completion_rate',
-  'increased_use_factors',
-  'proms_use_context',
-  'concerning_patterns',
-  'support_prom_based_discharge',
-  'proms_trigger_review',
-  'waiting_list_prioritisation'
+  'primarysetting',
+  'annualarthroplastyvolume',
+  'departmentannualdataaccess',
+  'promsusefulness',
+  'departmentcompletionrate',
+  'collectionworthwhile',
+  'routinefollowup',
+  'recallbasedonproms',
+  'minimumusefulcompletionrate',
+  'increasedusefactors',
+  'promsusecontext',
+  'promstriggerreview',
+  'primaryroleproms',
+  'continuedpromsuse'
 ];
 
 function setCorsHeaders(req, res) {
@@ -32,10 +29,9 @@ function setCorsHeaders(req, res) {
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
-
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
 
 export default async function handler(req, res) {
@@ -50,13 +46,14 @@ export default async function handler(req, res) {
   }
 
   const origin = req.headers.origin;
+
   if (!origin || !allowedOrigins.includes(origin)) {
     return res.status(403).json({ error: 'Origin not permitted.' });
   }
 
   const body = req.body;
 
-  if (!body || body.survey_version !== 'v2' || !body.responses) {
+  if (!body || body.surveyVersion !== 'v2' || !body.responses) {
     return res.status(400).json({ error: 'Invalid survey submission.' });
   }
 
@@ -64,11 +61,15 @@ export default async function handler(req, res) {
     const value = body.responses[field];
 
     if (Array.isArray(value) && value.length === 0) {
-      return res.status(400).json({ error: `Missing required response: ${field}` });
+      return res.status(400).json({
+        error: `Missing required response: ${field}`
+      });
     }
 
     if (!Array.isArray(value) && !value) {
-      return res.status(400).json({ error: `Missing required response: ${field}` });
+      return res.status(400).json({
+        error: `Missing required response: ${field}`
+      });
     }
   }
 
@@ -91,8 +92,11 @@ export default async function handler(req, res) {
     });
 
   if (error) {
-    console.error('Survey insertion error:', error.message);
-    return res.status(500).json({ error: 'Unable to record the response.' });
+    console.error('Survey insertion error:', error);
+
+    return res.status(500).json({
+      error: 'Unable to record the response.'
+    });
   }
 
   return res.status(201).json({ ok: true });
